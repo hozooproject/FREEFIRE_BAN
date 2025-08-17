@@ -38,255 +38,292 @@ try {
   // Create default HTML file if missing
   const htmlFilePath = path.join(__dirname, 'public', 'index.html');
   if (!fs.existsSync(htmlFilePath)) {
-    const defaultHtml = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>LORDHOZOOO BAN SYSTEM - Free Fire India</title>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-        
-        body {
-          font-family: 'Orbitron', sans-serif;
-          margin: 0;
-          padding: 0;
-          background-color: #000;
-          color: #ff0000;
-          background-image: 
-            radial-gradient(circle at 10% 20%, rgba(255,0,0,0.1) 0%, transparent 20%),
-            radial-gradient(circle at 90% 80%, rgba(255,0,0,0.1) 0%, transparent 20%);
-        }
-        
-        .container {
-          max-width: 900px;
-          margin: 0 auto;
-          padding: 20px;
-          border: 2px solid #ff0000;
-          border-radius: 5px;
-          box-shadow: 0 0 20px #ff0000;
-          background-color: rgba(0, 0, 0, 0.8);
-          margin-top: 30px;
-        }
-        
-        .header {
-          text-align: center;
-          margin-bottom: 30px;
-          border-bottom: 1px solid #ff0000;
-          padding-bottom: 15px;
-        }
-        
-        .title {
-          font-size: 2.5em;
-          color: #ff0000;
-          text-shadow: 0 0 10px #ff0000;
-          margin-bottom: 5px;
-          letter-spacing: 3px;
-        }
-        
-        .subtitle {
-          font-size: 1.2em;
-          color: #ff0000;
-          margin-bottom: 20px;
-        }
-        
-        .info-panel {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 20px;
-          padding: 10px;
-          background-color: rgba(255, 0, 0, 0.1);
-          border: 1px solid #ff0000;
-          border-radius: 5px;
-        }
-        
-        .info-item {
-          text-align: center;
-        }
-        
-        .info-label {
-          font-size: 0.8em;
-          color: #ff0000;
-          opacity: 0.7;
-        }
-        
-        .info-value {
-          font-size: 1.2em;
-          color: #ff0000;
-          font-weight: bold;
-        }
-        
-        .input-group {
-          margin-bottom: 20px;
-        }
-        
-        input {
-          width: 100%;
-          padding: 12px;
-          background-color: #111;
-          border: 1px solid #ff0000;
-          color: #fff;
-          font-family: 'Orbitron', sans-serif;
-          font-size: 1em;
-          margin-bottom: 10px;
-        }
-        
-        button {
-          width: 100%;
-          padding: 12px;
-          background-color: #ff0000;
-          color: #000;
-          border: none;
-          font-family: 'Orbitron', sans-serif;
-          font-size: 1.2em;
-          font-weight: bold;
-          cursor: pointer;
-          transition: all 0.3s;
-          letter-spacing: 1px;
-        }
-        
-        button:hover {
-          background-color: #ff3333;
-          box-shadow: 0 0 15px #ff0000;
-        }
-        
-        #status {
-          margin-top: 20px;
-          padding: 15px;
-          border: 1px solid #ff0000;
-          min-height: 300px;
-          max-height: 400px;
-          overflow-y: auto;
-          background-color: rgba(0, 0, 0, 0.5);
-          font-family: 'Courier New', monospace;
-        }
-        
-        #status p {
-          margin: 5px 0;
-          padding: 5px;
-          border-bottom: 1px dotted rgba(255, 0, 0, 0.3);
-        }
-        
-        .glow {
-          animation: glow 2s infinite alternate;
-        }
-        
-        @keyframes glow {
-          from {
-            text-shadow: 0 0 5px #ff0000;
-          }
-          to {
-            text-shadow: 0 0 15px #ff0000, 0 0 20px #ff0000;
-          }
-        }
-      </style>
-      <script src="https://www.googletagmanager.com/gtm.js?id=GTM-TS4GPXF"></script>
-      <script>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-TS4GPXF');
-      </script>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <div class="title glow">LORDHOZOOO BAN SYSTEM</div>
-          <div class="subtitle">FREE FIRE INDIA SERVER</div>
-        </div>
-        
-        <div class="info-panel">
-          <div class="info-item">
-            <div class="info-label">DATE</div>
-            <div class="info-value" id="current-date">Loading...</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">TIME</div>
-            <div class="info-value" id="current-time">Loading...</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">WEATHER</div>
-            <div class="info-value" id="current-weather">Unknown</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">STATUS</div>
-            <div class="info-value" id="system-status">READY</div>
-          </div>
-        </div>
-        
-        <div class="input-group">
-          <input type="text" id="gameId" placeholder="ENTER GAME ID">
-          <button onclick="submitGameId()">START BAN PROCESS</button>
-        </div>
-        
-        <div id="status"></div>
-      </div>
+    const defaultHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LORDHOZOOO BAN SYSTEM - Free Fire India</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+    
+    :root {
+      --primary-color: #ff0000;
+      --secondary-color: #000;
+      --text-color: #fff;
+      --accent-color: #ff5555;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255,0,0,0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255,0,0,0.1) 0%, transparent 20%);
+      padding: 20px;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 900px;
+      padding: 20px;
+      border: 2px solid var(--primary-color);
+      border-radius: 5px;
+      box-shadow: 0 0 20px var(--primary-color);
+      background-color: rgba(0, 0, 0, 0.8);
+      margin: 30px auto;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--primary-color);
+      padding-bottom: 15px;
+    }
+    
+    .title {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      text-shadow: 0 0 10px var(--primary-color);
+      margin-bottom: 5px;
+      letter-spacing: 3px;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    
+    .info-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: rgba(255, 0, 0, 0.1);
+      border: 1px solid var(--primary-color);
+      border-radius: 5px;
+    }
+    
+    .info-item {
+      text-align: center;
+    }
+    
+    .info-label {
+      font-size: 0.8rem;
+      color: var(--primary-color);
+      opacity: 0.7;
+      margin-bottom: 5px;
+    }
+    
+    .info-value {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    input {
+      width: 100%;
+      padding: 12px;
+      background-color: #111;
+      border: 1px solid var(--primary-color);
+      color: var(--text-color);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+    
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      border: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 1px;
+      border-radius: 4px;
+    }
+    
+    button:hover {
+      background-color: #ff3333;
+      box-shadow: 0 0 15px var(--primary-color);
+    }
+    
+    #status {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid var(--primary-color);
+      min-height: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      font-family: 'Courier New', monospace;
+      border-radius: 4px;
+    }
+    
+    #status p {
+      margin: 5px 0;
+      padding: 5px;
+      border-bottom: 1px dotted rgba(255, 0, 0, 0.3);
+    }
+    
+    .glow {
+      animation: glow 2s infinite alternate;
+    }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px var(--primary-color);
+      }
+      to {
+        text-shadow: 0 0 15px var(--primary-color), 0 0 20px var(--primary-color);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+        margin-top: 15px;
+      }
       
-      <script src="/socket.io/socket.io.js"></script>
-      <script>
-        const socket = io();
+      .title {
+        font-size: 2rem;
+      }
+      
+      .info-panel {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .info-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title glow">LORDHOZOOO BAN SYSTEM</div>
+      <div class="subtitle">FREE FIRE INDIA SERVER</div>
+    </div>
+    
+    <div class="info-panel">
+      <div class="info-item">
+        <div class="info-label">DATE</div>
+        <div class="info-value" id="current-date">Loading...</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">TIME</div>
+        <div class="info-value" id="current-time">Loading...</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">WEATHER</div>
+        <div class="info-value" id="current-weather">Unknown</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">STATUS</div>
+        <div class="info-value" id="system-status">READY</div>
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <input type="text" id="gameId" placeholder="ENTER GAME ID" required>
+      <button id="banButton">START BAN PROCESS</button>
+    </div>
+    
+    <div id="status"></div>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const socket = io();
+      const gameIdInput = document.getElementById('gameId');
+      const banButton = document.getElementById('banButton');
+      const systemStatus = document.getElementById('system-status');
+      
+      // Update time and date
+      function updateDateTime() {
+        const now = new Date();
         
-        // Update time and date
-        function updateDateTime() {
-          const now = new Date();
-          
-          // Format date: Day, DD Month YYYY
-          const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-          document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
-          
-          // Format time: HH:MM:SS
-          document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', {hour12: false});
-          
-          // Update every second
-          setTimeout(updateDateTime, 1000);
+        // Format date: Day, DD Month YYYY
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+        
+        // Format time: HH:MM:SS
+        document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', {hour12: false});
+      }
+      
+      // Simulate weather (in a real app, you'd call a weather API)
+      function simulateWeather() {
+        const weathers = ['Sunny', 'Cloudy', 'Rainy', 'Stormy', 'Foggy'];
+        const randomWeather = weathers[Math.floor(Math.random() * weathers.length)];
+        document.getElementById('current-weather').textContent = randomWeather;
+      }
+      
+      // Initialize
+      updateDateTime();
+      simulateWeather();
+      setInterval(updateDateTime, 1000);
+      setInterval(simulateWeather, 1800000); // Update every 30 minutes
+      
+      banButton.addEventListener('click', function() {
+        const gameId = gameIdInput.value.trim();
+        if (!gameId) {
+          alert('Please enter a valid Game ID');
+          return;
         }
         
-        // Simulate weather (in a real app, you'd call a weather API)
-        function simulateWeather() {
-          const weathers = ['Sunny', 'Cloudy', 'Rainy', 'Stormy', 'Foggy'];
-          const randomWeather = weathers[Math.floor(Math.random() * weathers.length)];
-          document.getElementById('current-weather').textContent = randomWeather;
-          
-          // Update every 30 minutes
-          setTimeout(simulateWeather, 1800000);
-        }
+        systemStatus.textContent = 'PROCESSING';
+        systemStatus.style.color = 'var(--primary-color)';
         
-        // Initialize
-        updateDateTime();
-        simulateWeather();
-        
-        function submitGameId() {
-          const gameId = document.getElementById('gameId').value;
-          if (!gameId) {
-            alert('Please enter a Game ID');
-            return;
-          }
-          
-          document.getElementById('system-status').textContent = 'PROCESSING';
-          document.getElementById('system-status').style.color = '#ff0000';
-          
-          fetch('/api/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ gameId })
-          });
-        }
-        
-        socket.on('reportStatus', (data) => {
-          const statusDiv = document.getElementById('status');
-          const now = new Date();
-          const timeString = now.toLocaleTimeString('en-US', {hour12: false});
-          
-          const messageElement = document.createElement('p');
-          messageElement.innerHTML = `<span style="color: #ff5555">[${timeString}]</span> ${data.message}`;
-          
-          statusDiv.appendChild(messageElement);
-          statusDiv.scrollTop = statusDiv.scrollHeight;
+        fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ gameId })
+        }).catch(err => {
+          console.error('Error:', err);
         });
-      </script>
-    </body>
-    </html>
-    `;
+      });
+      
+      socket.on('reportStatus', (data) => {
+        const statusDiv = document.getElementById('status');
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', {hour12: false});
+        
+        const messageElement = document.createElement('p');
+        messageElement.innerHTML = `<span style="color: var(--accent-color)">[${timeString}]</span> ${data.message}`;
+        
+        statusDiv.appendChild(messageElement);
+        statusDiv.scrollTop = statusDiv.scrollHeight;
+      });
+    });
+  </script>
+</body>
+</html>`;
     fs.writeFileSync(htmlFilePath, defaultHtml);
   }
 
