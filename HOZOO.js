@@ -1,5 +1,7 @@
 // BY LORDHOZOO 2025
 
+
+
 const express = require('express');
 const socketIO = require('socket.io');
 const https = require('https');
@@ -315,7 +317,7 @@ try {
         const timeString = now.toLocaleTimeString('en-US', {hour12: false});
         
         const messageElement = document.createElement('p');
-        messageElement.innerHTML = `<span style="color: var(--accent-color)">[${timeString}]</span> ${data.message}`;
+        messageElement.innerHTML = '<span style="color: ' + 'var(--accent-color)' + '">[' + timeString + ']</span> ' + data.message;
         
         statusDiv.appendChild(messageElement);
         statusDiv.scrollTop = statusDiv.scrollHeight;
